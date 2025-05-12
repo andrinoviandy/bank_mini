@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Bank | Log In</title>
+  <title>Bank Mini | Log In</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -29,8 +29,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <link href='img/logo.png' rel='icon' />
 </head>
-
-<body class="hold-transition login-page" style="overflow: hidden; background-image:url('img/background.jpg'); background-repeat:no-repeat; background-position:center; background-size:cover">
+<!-- style="overflow: hidden; background-image:url('img/background.jpg'); background-repeat:no-repeat; background-position:center; background-size:cover" -->
+<body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
       <a href=""><b style="color:#FFF"><img src="img/logo.png" width="70%" /></b></a>
