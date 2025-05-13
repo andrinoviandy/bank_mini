@@ -616,9 +616,9 @@ else if (isset($_SESSION['adminpodalam']) or isset($_SESSION['adminpoluar'])) {
       <!-- /.content-wrapper -->
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Version</b> 2
-        </div>
-        <strong>Copyright &copy; 2018 <a href="#">PT Bima Bhakti Utama</a>.</strong> All rights
+          <b>Version</b> 1
+        </div>a
+        <strong>Copyright &copy; 2025 <a href="#">Developed by PruTech PTPU</a>.</strong> All rights
         reserved.
       </footer>
 

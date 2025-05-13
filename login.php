@@ -28,9 +28,24 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <link href='img/logo.png' rel='icon' />
+  <style>
+    .home-icon {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 30px;
+      color: #444444;
+      z-index: 1000;
+    }
+    .home-icon:hover {
+      color: #1194af ;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <!-- style="overflow: hidden; background-image:url('img/background.jpg'); background-repeat:no-repeat; background-position:center; background-size:cover" -->
 <body class="hold-transition login-page">
+  <a href="<?php echo ((isset($_SERVER['HTTPS'])) && $_SERVER['HTTPS'] === 'on' ? "https://" : "http://").$_SERVER['HTTP_HOST']."/kantin"; ?>" class="home-icon fixed"><i class="fa fa-home"></i></a>
   <div class="login-box">
     <div class="login-logo">
       <a href=""><b style="color:#FFF"><img src="img/logo.png" width="70%" /></b></a>
