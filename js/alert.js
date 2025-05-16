@@ -83,10 +83,10 @@ function alertCustom(param, titleP, textP = '') {
     }
 }
 
-async function alertConfirm(title, text = '') {
+async function alertConfirm(title, text = '', klas = "bg-red") {
     const result = await Swal.fire({
         customClass: {
-            confirmButton: 'bg-red',
+            confirmButton: klas,
             cancelButton: 'bg-white',
         },
         title: title,

@@ -859,6 +859,8 @@ else if (isset($_SESSION['adminpodalam']) or isset($_SESSION['adminpoluar'])) {
     <!-- <script src="js/paging/<?php //echo $_GET['page'] 
                                 ?>.js"></script> -->
     <script>
+      let status_deposit_wali = '';
+      let interval_deposit_wali;
       var search = document.getElementById("keyword")
       var table = document.getElementById("table")
       var paging2 = document.getElementById("paging-2")

@@ -71,6 +71,22 @@
           </li>
         </ul>
       </li>
+      <li class="treeview <?php echo $deposit_saldo; ?>">
+        <a href="#">
+          <i class="fa fa-dollar"></i> <span>Deposit</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="<?php echo $deposit_saldo_wali; ?>">
+            <a href="index.php?page=deposit_wali" class=""><i class="fa fa-circle-o"></i> Deposit Wali </a>
+          </li>
+          <li class="<?php echo $deposit_saldo_guru; ?>">
+            <a href="index.php?page=deposit_guru" class=""><i class="fa fa-circle-o"></i> Deposit Guru</a>
+          </li>
+        </ul>
+      </li>
       <!-- <li class="treeview <?php echo $utang_piutang; ?>">
         <a href="#">
           <i class="fa fa-bank"></i> <span>Bayar Hutang / Piutang</span>
