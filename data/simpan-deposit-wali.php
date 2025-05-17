@@ -3,7 +3,7 @@ include("../config/koneksi_kantin.php");
 session_start();
 // error_reporting(0);
 $status = 1;
-if (isset($_POST['bank']) && $_POST['bank'] == 'Manual Petugas') {
+if (isset($_POST['bank']) && $_POST['bank'] == 'Manual') {
     $status = 2;
 }
 $s1 = mysqli_query($koneksi_kantin, "insert into deposit(id_ortu, jumlah, bank, status, created_at) values('" . $_POST['id_ortu'] . "','" . str_replace(".", "", $_POST['jumlah']) . "','" . $_POST['bank'] . "', $status, current_timestamp())");

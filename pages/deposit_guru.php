@@ -1,10 +1,10 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>Deposit Wali</h1>
+        <h1>Deposit Guru</h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Deposit Wali</li>
+            <li class="active">Deposit Guru</li>
         </ol>
     </section>
 
@@ -95,7 +95,7 @@
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Deposit Wali</h4>
+                <h4 class="modal-title">Deposit Guru</h4>
             </div>
             <form method="post" onsubmit="simpanDeposit(); return false;" id="formPinjam">
                 <div class="modal-body">
@@ -137,26 +137,26 @@
 </div>
 
 <script>
-    async function hapusData(id) {
-        const confirm = await alertConfirm('Apakah Anda Yakin Menghapus Data Ini ?', 'Data Tidak Dapat Dikembalikan')
-        if (confirm) {
-            $.post("data/hapus-nasabah.php", {
-                    id: id
-                },
-                function(data, textStatus, jqXHR) {
-                    if (data == 'S') {
-                        alertHapus('S')
-                        loadMore(load_flag, key, status_b);
-                    } else {
-                        alertHapus('F')
-                    }
-                }
-            );
-        }
-    }
+    // async function hapusData(id) {
+    //     const confirm = await alertConfirm('Apakah Anda Yakin Menghapus Data Ini ?', 'Data Tidak Dapat Dikembalikan')
+    //     if (confirm) {
+    //         $.post("data/hapus-nasabah.php", {
+    //                 id: id
+    //             },
+    //             function(data, textStatus, jqXHR) {
+    //                 if (data == 'S') {
+    //                     alertHapus('S')
+    //                     loadMore(load_flag, key, status_b);
+    //                 } else {
+    //                     alertHapus('F')
+    //                 }
+    //             }
+    //         );
+    //     }
+    // }
 
     async function modalDeposit() {
-        await $.get("data/modal-deposit-wali.php",
+        await $.get("data/modal-deposit-guru.php",
             function(data, textStatus, jqXHR) {
                 $('#data-pinjam').html(data);
             }
@@ -169,7 +169,7 @@
         var data = new FormData(dataform);
         $.ajax({
             type: "post",
-            url: "data/simpan-deposit-wali.php",
+            url: "data/simpan-deposit-guru.php",
             data: data,
             enctype: "multipart/form-data",
             contentType: false,
@@ -194,33 +194,10 @@
         $('#modal-bayar').modal('show');
     }
 
-    function simpanBayar() {
-        var dataform = $('#formBayar')[0];
-        var data = new FormData(dataform);
-        $.ajax({
-            type: "post",
-            url: "data/simpan-bayar-pinjaman.php",
-            data: data,
-            enctype: "multipart/form-data",
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                if (response === 'S') {
-                    $('#modal-bayar').modal('hide');
-                    dataform.reset();
-                    alertSimpan('S')
-                    loadMore(load_flag, key, status_b)
-                } else {
-                    alertSimpan('F')
-                }
-            }
-        });
-    }
-
     async function konfirmasi(id, jumlah) {
-        const confirm = await alertConfirm(`Saldo Sebesar ${jumlah} Akan Masuk ke Akun Orang Tua ?`, 'Pilih Ya Untuk Melanjutkan', "bg-green")
+        const confirm = await alertConfirm(`Saldo Sebesar ${jumlah} Akan Masuk ke Akun Guru ?`, 'Pilih Ya Untuk Melanjutkan', "bg-green")
         if (confirm) {
-            $.post("data/update-deposit-wali.php", {
+            $.post("data/update-deposit-guru.php", {
                     id: id
                 },
                 function(data) {
@@ -237,24 +214,24 @@
 
     async function getDataTab1() {
         loading2('#table')
-        status_deposit_wali = '0,1'
+        status_deposit_guru = '0,1'
         await loadMore(load_flag, key, status_b)
-        interval_deposit_wali = setInterval(() => {
+        interval_deposit_guru = setInterval(() => {
             loadMore(load_flag, key, status_b)
         }, 5000);
     }
 
     async function getDataTab2() {
-        clearInterval(interval_deposit_wali)
+        clearInterval(interval_deposit_guru)
         loading2('#table')
-        status_deposit_wali = '2'
+        status_deposit_guru = '2'
         await loadMore(load_flag, key, status_b)
     }
 
     $(document).ready(function() {
-        status_deposit_wali = '0,1';
-        if (status_deposit_wali == '0,1') {
-            interval_deposit_wali = setInterval(() => {
+        status_deposit_guru = '0,1';
+        if (status_deposit_guru == '0,1') {
+            interval_deposit_guru = setInterval(() => {
                 loadMore(load_flag, key, status_b)
             }, 5000);
         }

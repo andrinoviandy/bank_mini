@@ -106,6 +106,12 @@ if (isset($_GET['page'])) {
 	} else if ($_GET['page'] == 'deposit' or $_GET['page'] == 'tambah_deposit') {
 		$bagian_keuangan = "active";
 		$deposit = "active";
+	} else if ($_GET['page'] == 'deposit_wali') {
+		$deposit_saldo = "active";
+		$deposit_saldo_wali = "active";
+	} else if ($_GET['page'] == 'deposit_guru') {
+		$deposit_saldo = "active";
+		$deposit_saldo_guru = "active";
 	} else if ($_GET['page'] == 'biaya_lain' or $_GET['page'] == 'tambah_biaya_lain' or $_GET['page'] == 'ubah_biaya_lain') {
 		$bagian_keuangan = "active";
 		$biaya_lain = "active";

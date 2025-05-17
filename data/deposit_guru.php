@@ -38,7 +38,7 @@ $jml2 = $file2;
             <tr>
                 <td width="" align="center"><strong>No</strong>
                 <th width="" valign="top" class="text-nowrap">Tanggal Deposit</th>
-                <th width="" valign="top" class="text-nowrap">Nama Orang Tua</th>
+                <th width="" valign="top" class="text-nowrap">Nama Guru</th>
                 <th width="" valign="top" class="text-nowrap">Jumlah Deposit</th>
                 <th width="" valign="top" class="text-nowrap">Bank Tujuan</th>
                 <th width="" valign="top">Status</th>
@@ -70,7 +70,7 @@ $jml2 = $file2;
                         <badge class="badge btn-primary">Selesai</badge>
                         <br>
                         <?php if ($json[$i]['bank'] == 'Manual') { ?>
-                            <badge class="badge btn-success">Manual, Tidak Ada Bukti Transfer</badge>
+                            <badge class="badge btn-success">Manual, Tidak Perlu Bukti</badge>
                         <?php } else { ?>
                             <badge class="badge btn-info" style="cursor: pointer;" onclick="lihatBukti('<?php echo $json[$i]['bukti_transfer']; ?>')">Lihat Bukti Transfer</badge>
                         <?php } ?>

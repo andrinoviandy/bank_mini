@@ -861,6 +861,8 @@ else if (isset($_SESSION['adminpodalam']) or isset($_SESSION['adminpoluar'])) {
     <script>
       let status_deposit_wali = '';
       let interval_deposit_wali;
+      let status_deposit_guru = '';
+      let interval_deposit_guru;
       var search = document.getElementById("keyword")
       var table = document.getElementById("table")
       var paging2 = document.getElementById("paging-2")

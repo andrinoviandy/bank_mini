@@ -19,10 +19,9 @@ if (isset($_GET['start'])) {
                         b.nama,
                         a.id as idd 
                     from
-                        deposit a inner join ortu b on b.id = a.id_ortu left join siswa c on c.id = b.id_siswa 
-                    where a.status IN ($_GET[status]) and (b.nik like ('%$_GET[cari]%') 
-                        or b.nama like ('%$_GET[cari]%') 
-                        or b.alamat like ('%$_GET[cari]%') 
+                        deposit a inner join guru b on b.id = a.id_guru 
+                    where a.status IN ($_GET[status]) and (b.nama like ('%$_GET[cari]%') 
+                        or b.jabatan like ('%$_GET[cari]%') 
                         or b.whatsapp like ('%$_GET[cari]%')) 
                     order by a.created_at desc LIMIT $start, $limit";
     } else {
@@ -31,7 +30,7 @@ if (isset($_GET['start'])) {
                         b.nama,
                         a.id as idd 
                     from
-                        deposit a inner join ortu b on b.id = a.id_ortu left join siswa c on c.id = b.id_siswa 
+                        deposit a inner join guru b on b.id = a.id_guru  
                     where a.status IN ($_GET[status]) 
                     order by a.created_at desc LIMIT $start, $limit";
     }
@@ -51,13 +50,12 @@ if (isset($_GET['start'])) {
         $sql = "select
                         count(a.id) as jml 
                     from
-                        deposit a inner join ortu b on b.id = a.id_ortu left join siswa c on c.id = b.id_siswa 
-                    where a.status IN ($_GET[status]) and (b.nik like ('%$_GET[cari]%') 
-                        or b.nama like ('%$_GET[cari]%') 
-                        or b.alamat like ('%$_GET[cari]%') 
+                        deposit a inner join guru b on b.id = a.id_guru 
+                    where a.status IN ($_GET[status]) and (b.nama like ('%$_GET[cari]%') 
+                        or b.jabatan like ('%$_GET[cari]%') 
                         or b.whatsapp like ('%$_GET[cari]%'))";
     } else {
-        $sql = "select count(a.id) as jml from deposit a inner join ortu b on b.id = a.id_ortu where a.status IN ($_GET[status])";
+        $sql = "select count(a.id) as jml from deposit a inner join guru b on b.id = a.id_guru where a.status IN ($_GET[status])";
     }
 
     $result = mysqli_fetch_array(mysqli_query($koneksi_kantin, $sql));
