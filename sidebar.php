@@ -144,6 +144,12 @@
           <li class="<?php echo $laporan_laba_rugi; ?>">
             <a href="index.php?page=laporan_laba_rugi" class=""><i class="fa fa-circle-o"></i> Laba Rugi</a>
           </li>
+          <li class="<?php echo $laporan_deposit; ?>">
+            <a href="index.php?page=laporan_deposit" class=""><i class="fa fa-circle-o"></i> Laporan Deposit</a>
+          </li>
+          <li class="<?php echo $laporan_saldo; ?>">
+            <a href="index.php?page=laporan_saldo" class=""><i class="fa fa-circle-o"></i> Laporan Saldo Wali/Guru</a>
+          </li>
         </ul>
       </li>
       <!--
