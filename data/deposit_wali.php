@@ -2,7 +2,7 @@
 include("../config/koneksi.php");
 include("../include/API.php");
 session_start();
-error_reporting(0);
+// error_reporting(0);
 ?>
 <?php
 $start = $_GET['start'];
