@@ -7,25 +7,27 @@ session_start();
 <?php
 $start = $_GET['start'];
 
-if (isset($_GET['cari'])) {
-    $search = str_replace(" ", "%20", $_GET['cari']);
-    if (!isset($_GET['tgl1']) && !isset($_GET['tgl2'])) {
-        $file = file_get_contents($API . "json/$_GET[page].php?start=$start&cari=" . $search . "&status=$_GET[status]");
-        $file2 = file_get_contents($API . "json/$_GET[page].php?cari=" . $search . "&status=$_GET[status]");
-    } else {
-        $file = file_get_contents($API . "json/$_GET[page].php?start=$start&cari=" . $search . "&tgl1=" . $_GET['tgl1'] . "&tgl2=" . $_GET['tgl2'] . "&status=$_GET[status]");
-        $file2 = file_get_contents($API . "json/$_GET[page].php?cari=" . $search . "&tgl1=" . $_GET['tgl1'] . "&tgl2=" . $_GET['tgl2'] . "&status=$_GET[status]");
+if (!isset($_GET['tgl1']) && !isset($_GET['tgl2'])) {
+    $url = $API . "json/$_GET[page].php?start=$start&status=$_GET[status]";
+    $file = @file_get_contents($url);
+
+    if ($file === FALSE) {
+        echo "Gagal mengambil data dari API: $url";
+        exit;
     }
+    $file2 = file_get_contents($API . "json/$_GET[page].php?status=$_GET[status]");
 } else {
-    if (!isset($_GET['tgl1']) && !isset($_GET['tgl2'])) {
-        $file = file_get_contents($API . "json/$_GET[page].php?start=$start&status=$_GET[status]");
-        $file2 = file_get_contents($API . "json/$_GET[page].php?status=$_GET[status]");
-    } else {
-        $file = file_get_contents($API . "json/$_GET[page].php?start=" . $start . "&tgl1=" . $_GET['tgl1'] . "&tgl2=" . $_GET['tgl2'] . "&status=$_GET[status]");
-        $file2 = file_get_contents($API . "json/$_GET[page].php?tgl1=" . $_GET['tgl1'] . "&tgl2=" . $_GET['tgl2'] . "&status=$_GET[status]");
+    $url = $API . "json/$_GET[page].php?start=" . $start . "&tgl1=" . $_GET['tgl1'] . "&tgl2=" . $_GET['tgl2'] . "&status=$_GET[status]";
+    $file = @file_get_contents($url);
+
+    if ($file === FALSE) {
+        echo "Gagal mengambil data dari API: $url";
+        exit;
     }
+    $file2 = file_get_contents($API . "json/$_GET[page].php?tgl1=" . $_GET['tgl1'] . "&tgl2=" . $_GET['tgl2'] . "&status=$_GET[status]");
 }
 $json = json_decode($file, true);
+echo $json; die();
 $jml2 = $file2;
 
 ?>
