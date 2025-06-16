@@ -49,8 +49,8 @@ $jml2 = $file2;
             </tr>
         </thead>
         <?php
-        $jml = count($json);
-        if ($jml !== 0) {
+        if ($json != null || $json != NULL) {
+            $jml = count($json);
             for ($i = 0; $i < $jml; $i++) {
         ?>
                 <tr>
