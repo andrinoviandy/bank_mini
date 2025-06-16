@@ -26,8 +26,6 @@ if (isset($_GET['cari'])) {
     }
 }
 $json = json_decode($file, true);
-$jml = count($json);
-
 $jml2 = $file2;
 
 ?>
@@ -51,27 +49,34 @@ $jml2 = $file2;
             </tr>
         </thead>
         <?php
-        for ($i = 0; $i < $jml; $i++) {
+        if ($json != null || $json != NULL) {
+            $jml = count($json);
+            for ($i = 0; $i < $jml; $i++) {
         ?>
+                <tr>
+                    <td align="center"><?php echo $start += 1; ?></td>
+                    <td><?php echo $json[$i]['nik'];  ?></td>
+
+                    <td>
+                        <?php echo $json[$i]['nama_nasabah'];  ?>
+                    </td>
+                    <td><?php echo $json[$i]['tempat_lahir'] . ", " . date("d-m-Y", strtotime($json[$i]['tanggal_lahir']));  ?></td>
+                    <td><?php echo $json[$i]['alamat']; ?></td>
+                    <td><?php echo $json[$i]['email'];  ?></td>
+                    <td><?php echo $json[$i]['no_hp'];  ?></td>
+                    <td><?php echo $json[$i]['status'] === 1 ? 'Aktif' : 'Pasif';  ?></td>
+                    <td>
+                        <!-- href="index.php?page=karyawan&id_hapus=<?php echo $json[$i]['idd']; ?>" onclick="return confirm('Anda Yakin Akan Menghapus Item Ini ?')" -->
+                        <button class="btn btn-xs btn-danger" onclick="hapusData('<?php echo $json[$i]['idd']; ?>')"><span data-toggle="tooltip" title="Hapus" class="ion-android-delete"></span></button>
+                        &nbsp;
+                        <a href="index.php?page=ubah_nasabah&id_ubah=<?php echo $json[$i]['idd']; ?>" class="btn btn-xs btn-info"><span data-toggle="tooltip" title="Ubah" class="fa fa-edit"></span></a>
+
+                    </td>
+                </tr>
+            <?php } ?>
+        <?php } else { ?>
             <tr>
-                <td align="center"><?php echo $start += 1; ?></td>
-                <td><?php echo $json[$i]['nik'];  ?></td>
-
-                <td>
-                    <?php echo $json[$i]['nama_nasabah'];  ?>
-                </td>
-                <td><?php echo $json[$i]['tempat_lahir'] . ", " . date("d-m-Y", strtotime($json[$i]['tanggal_lahir']));  ?></td>
-                <td><?php echo $json[$i]['alamat']; ?></td>
-                <td><?php echo $json[$i]['email'];  ?></td>
-                <td><?php echo $json[$i]['no_hp'];  ?></td>
-                <td><?php echo $json[$i]['status'] === 1 ? 'Aktif' : 'Pasif';  ?></td>
-                <td>
-                <!-- href="index.php?page=karyawan&id_hapus=<?php echo $json[$i]['idd']; ?>" onclick="return confirm('Anda Yakin Akan Menghapus Item Ini ?')" -->
-                    <button class="btn btn-xs btn-danger" onclick="hapusData('<?php echo $json[$i]['idd']; ?>')"><span data-toggle="tooltip" title="Hapus" class="ion-android-delete"></span></button>
-                    &nbsp;
-                    <a href="index.php?page=ubah_nasabah&id_ubah=<?php echo $json[$i]['idd']; ?>" class="btn btn-xs btn-info"><span data-toggle="tooltip" title="Ubah" class="fa fa-edit"></span></a>
-
-                </td>
+                <td colspan="9" align="center">Tidak Ada Data</td>
             </tr>
         <?php } ?>
     </table>

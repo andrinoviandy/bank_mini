@@ -26,7 +26,7 @@ if (isset($_GET['cari'])) {
     }
 }
 $json = json_decode($file, true);
-$jml = count($json);
+// $jml = count($json);
 
 $jml2 = $file2;
 
@@ -48,25 +48,32 @@ $jml2 = $file2;
             </tr>
         </thead>
         <?php
-        for ($i = 0; $i < $jml; $i++) {
+        if ($json != null || $json != NULL) {
+            $jml = count($json);
+            for ($i = 0; $i < $jml; $i++) {
         ?>
+                <tr>
+                    <td><?php echo $start += 1; ?></td>
+                    <td>
+                        <?php echo date("d M Y", strtotime($json[$i]['tgl_deposit']));  ?>
+                    </td>
+                    <td><?php
+                        echo $json[$i]['dari_akun'];
+                        ?></td>
+                    <td><?php
+                        echo $json[$i]['ke_akun'];
+                        ?></td>
+                    <td><?php echo "Rp " . number_format($json[$i]['nominal_deposit'], 2, ',', '.'); ?></td>
+                    <td><?php echo $json[$i]['deskripsi'] ?></td>
+                    <td>
+                        <!-- href="index.php?page=deposit&id_hapus=<?php echo $json[$i]['idd']; ?>" onclick="return confirm('Anda Yakin Akan Membatalkan Proses Ini ?')" -->
+                        <button onclick="batalkan('<?php echo $json[$i]['idd']; ?>');" class="btn btn-xs btn-danger"><span data-toggle="tooltip" title="Batalkan" class="fa fa-close"></span></button>
+                    </td>
+                </tr>
+            <?php } ?>
+        <?php } else { ?>
             <tr>
-                <td><?php echo $start += 1; ?></td>
-                <td>
-                    <?php echo date("d M Y", strtotime($json[$i]['tgl_deposit']));  ?>
-                </td>
-                <td><?php
-                    echo $json[$i]['dari_akun'];
-                    ?></td>
-                <td><?php
-                    echo $json[$i]['ke_akun'];
-                    ?></td>
-                <td><?php echo "Rp " . number_format($json[$i]['nominal_deposit'], 2, ',', '.'); ?></td>
-                <td><?php echo $json[$i]['deskripsi'] ?></td>
-                <td>
-                    <!-- href="index.php?page=deposit&id_hapus=<?php echo $json[$i]['idd']; ?>" onclick="return confirm('Anda Yakin Akan Membatalkan Proses Ini ?')" -->
-                    <button onclick="batalkan('<?php echo $json[$i]['idd']; ?>');" class="btn btn-xs btn-danger"><span data-toggle="tooltip" title="Batalkan" class="fa fa-close"></span></button>
-                </td>
+                <td colspan="7" align="center">Tidak Ada Data</td>
             </tr>
         <?php } ?>
     </table>

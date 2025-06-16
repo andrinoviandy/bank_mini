@@ -26,7 +26,7 @@ if (isset($_GET['cari'])) {
     }
 }
 $json = json_decode($file, true);
-$jml = count($json);
+// $jml = count($json);
 
 $jml2 = $file2;
 
@@ -56,32 +56,39 @@ $jml2 = $file2;
             </tr>
         </thead>
         <?php
-        for ($i = 0; $i < $jml; $i++) {
+        if ($json != null || $json != NULL) {
+            $jml = count($json);
+            for ($i = 0; $i < $jml; $i++) {
         ?>
-            <tr>
-                <td align="center"><?php echo $start += 1; ?></td>
-                <td><?php echo $json[$i]['nik'];  ?></td>
+                <tr>
+                    <td align="center"><?php echo $start += 1; ?></td>
+                    <td><?php echo $json[$i]['nik'];  ?></td>
 
-                <td>
-                    <?php echo $json[$i]['nama_nasabah'];  ?>
-                </td>
-                <td><?php echo date("d-m-Y", strtotime($json[$i]['tgl_pinjam']));  ?></td>
-                <td><?php echo number_format($json[$i]['nominal_pinjam'], 0, ',', '.');  ?></td>
-                <td><?php echo $json[$i]['keterangan'];  ?></td>
-                <td><?php echo $json[$i]['nama_akun'];  ?></td>
-                <td><?php echo $json[$i]['flag_lunas'] == 0 ? 'Belum Lunas' : 'Lunas';  ?></td>
-                <td><?php echo $json[$i]['operator'];  ?></td>
-                <td><?php echo "Rp".number_format($json[$i]['total_angsuran'], 0, ',', '.');  ?></td>
-                <td><?php echo "Rp".number_format($json[$i]['total_kekurangan'], 0, ',', '.');  ?></td>
-                <td><?php echo "Rp".number_format($json[$i]['total_angsuran_bunga'], 0, ',', '.');  ?></td>
-                <td><?php echo "Rp".number_format($json[$i]['total_keuntungan'], 0, ',', '.');  ?></td>
-                <td>
-                    <!-- href="index.php?page=karyawan&id_hapus=<?php echo $json[$i]['idd']; ?>" onclick="return confirm('Anda Yakin Akan Menghapus Item Ini ?')" -->
-                    <!-- <button class="btn btn-xs btn-danger" onclick="hapusData('<?php echo $json[$i]['idd']; ?>')"><span data-toggle="tooltip" title="Hapus" class="ion-android-delete"></span></button>
+                    <td>
+                        <?php echo $json[$i]['nama_nasabah'];  ?>
+                    </td>
+                    <td><?php echo date("d-m-Y", strtotime($json[$i]['tgl_pinjam']));  ?></td>
+                    <td><?php echo number_format($json[$i]['nominal_pinjam'], 0, ',', '.');  ?></td>
+                    <td><?php echo $json[$i]['keterangan'];  ?></td>
+                    <td><?php echo $json[$i]['nama_akun'];  ?></td>
+                    <td><?php echo $json[$i]['flag_lunas'] == 0 ? 'Belum Lunas' : 'Lunas';  ?></td>
+                    <td><?php echo $json[$i]['operator'];  ?></td>
+                    <td><?php echo "Rp" . number_format($json[$i]['total_angsuran'], 0, ',', '.');  ?></td>
+                    <td><?php echo "Rp" . number_format($json[$i]['total_kekurangan'], 0, ',', '.');  ?></td>
+                    <td><?php echo "Rp" . number_format($json[$i]['total_angsuran_bunga'], 0, ',', '.');  ?></td>
+                    <td><?php echo "Rp" . number_format($json[$i]['total_keuntungan'], 0, ',', '.');  ?></td>
+                    <td>
+                        <!-- href="index.php?page=karyawan&id_hapus=<?php echo $json[$i]['idd']; ?>" onclick="return confirm('Anda Yakin Akan Menghapus Item Ini ?')" -->
+                        <!-- <button class="btn btn-xs btn-danger" onclick="hapusData('<?php echo $json[$i]['idd']; ?>')"><span data-toggle="tooltip" title="Hapus" class="ion-android-delete"></span></button>
                     &nbsp;-->
-                    <a href="index.php?page=detail_pinjaman&id=<?php echo $json[$i]['idd']; ?>" class="btn btn-xs btn-info" data-toggle="tooltip" data-title="Detai"><span class="fa fa-folder-open"></span></a>
+                        <a href="index.php?page=detail_pinjaman&id=<?php echo $json[$i]['idd']; ?>" class="btn btn-xs btn-info" data-toggle="tooltip" data-title="Detai"><span class="fa fa-folder-open"></span></a>
 
-                </td>
+                    </td>
+                </tr>
+            <?php } ?>
+        <?php } else { ?>
+            <tr>
+                <td colspan="9" align="center">Tidak Ada Data</td>
             </tr>
         <?php } ?>
     </table>

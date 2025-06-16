@@ -2,7 +2,7 @@
 include("../config/koneksi.php");
 include("../include/API.php");
 session_start();
-// error_reporting(0);
+error_reporting(0);
 ?>
 <?php
 $start = $_GET['start'];
@@ -90,7 +90,7 @@ $jml2 = $file2;
             <?php } ?>
         <?php } else { ?>
             <tr>
-                <td colspan="7">Tidak Ada Data</td>
+                <td colspan="7" align="center">Tidak Ada Data</td>
             </tr>
         <?php } ?>
     </table>
