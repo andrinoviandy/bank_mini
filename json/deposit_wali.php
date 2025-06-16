@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 header("Content-type:application/json");
 
 //koneksi ke database
@@ -12,7 +12,7 @@ $limit = $surat_masuk;
 
 //menampilkan data dari database, table tb_anggota
 if (isset($_GET['start'])) {
-    $start = mysqli_real_escape_string($koneksi, $_GET['start']);
+    $start = mysqli_real_escape_string($koneksi_kantin, $_GET['start']);
     if (isset($_GET['cari'])) {
         if ($_GET['status'] == '2') {
             $sql = "select
