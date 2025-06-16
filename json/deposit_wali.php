@@ -14,26 +14,59 @@ $limit = $surat_masuk;
 if (isset($_GET['start'])) {
     $start = mysqli_real_escape_string($koneksi, $_GET['start']);
     if (isset($_GET['cari'])) {
-        $sql = "select
-                        a.*,
-                        b.nama,
-                        a.id as idd 
-                    from
-                        deposit a inner join ortu b on b.id = a.id_ortu left join siswa c on c.id = b.id_siswa 
-                    where a.status IN ($_GET[status]) and (b.nik like ('%$_GET[cari]%') 
-                        or b.nama like ('%$_GET[cari]%') 
-                        or b.alamat like ('%$_GET[cari]%') 
-                        or b.whatsapp like ('%$_GET[cari]%')) 
-                    order by a.created_at desc LIMIT $start, $limit";
+        if ($_GET['status'] == '2') {
+            $sql = "select
+                            a.*,
+                            b.nama,
+                            a.id as idd 
+                        from
+                            deposit a inner join ortu b on b.id = a.id_ortu left join siswa c on c.id = b.id_siswa 
+                        where a.status IN ($_GET[status]) and (b.nik like ('%$_GET[cari]%') 
+                            or b.nama like ('%$_GET[cari]%') 
+                            or b.alamat like ('%$_GET[cari]%') 
+                            or b.whatsapp like ('%$_GET[cari]%')) 
+                        order by a.created_at desc LIMIT $start, $limit";
+        } else {
+            $status_raw = $_GET['status']; // "0,1"
+            $status_arr = explode(',', $status_raw);
+            $status_arr = array_map('intval', $status_arr); // amanin jadi integer
+            $in = implode(',', $status_arr); // "0,1"
+            $sql = "select
+                            a.*,
+                            b.nama,
+                            a.id as idd 
+                        from
+                            deposit a inner join ortu b on b.id = a.id_ortu left join siswa c on c.id = b.id_siswa 
+                        where a.status IN ($in) and (b.nik like ('%$_GET[cari]%') 
+                            or b.nama like ('%$_GET[cari]%') 
+                            or b.alamat like ('%$_GET[cari]%') 
+                            or b.whatsapp like ('%$_GET[cari]%')) 
+                        order by a.created_at desc LIMIT $start, $limit";
+        }
     } else {
-        $sql = "select
-                        a.*,
-                        b.nama,
-                        a.id as idd 
-                    from
-                        deposit a inner join ortu b on b.id = a.id_ortu left join siswa c on c.id = b.id_siswa 
-                    where a.status IN ($_GET[status]) 
-                    order by a.created_at desc LIMIT $start, $limit";
+        if ($_GET['status'] == '2') {
+            $sql = "select
+                            a.*,
+                            b.nama,
+                            a.id as idd 
+                        from
+                            deposit a inner join ortu b on b.id = a.id_ortu left join siswa c on c.id = b.id_siswa 
+                        where a.status IN ($_GET[status]) 
+                        order by a.created_at desc LIMIT $start, $limit";
+        } else {
+            $status_raw = $_GET['status']; // "0,1"
+            $status_arr = explode(',', $status_raw);
+            $status_arr = array_map('intval', $status_arr); // amanin jadi integer
+            $in = implode(',', $status_arr); // "0,1"
+            $sql = "select
+                            a.*,
+                            b.nama,
+                            a.id as idd 
+                        from
+                            deposit a inner join ortu b on b.id = a.id_ortu left join siswa c on c.id = b.id_siswa 
+                        where a.status IN ($in) 
+                        order by a.created_at desc LIMIT $start, $limit";
+        }
     }
     $result = mysqli_query($koneksi_kantin, $sql) or die("Error " . mysqli_error($koneksi_kantin));
 
@@ -48,16 +81,39 @@ if (isset($_GET['start'])) {
 } else {
     // untuk jumlah
     if (isset($_GET['cari'])) {
-        $sql = "select
-                        count(a.id) as jml 
-                    from
-                        deposit a inner join ortu b on b.id = a.id_ortu left join siswa c on c.id = b.id_siswa 
-                    where a.status IN ($_GET[status]) and (b.nik like ('%$_GET[cari]%') 
-                        or b.nama like ('%$_GET[cari]%') 
-                        or b.alamat like ('%$_GET[cari]%') 
-                        or b.whatsapp like ('%$_GET[cari]%'))";
+        if ($_GET['status'] == '2') {
+            $sql = "select
+                            count(a.id) as jml 
+                        from
+                            deposit a inner join ortu b on b.id = a.id_ortu left join siswa c on c.id = b.id_siswa 
+                        where a.status IN ($_GET[status]) and (b.nik like ('%$_GET[cari]%') 
+                            or b.nama like ('%$_GET[cari]%') 
+                            or b.alamat like ('%$_GET[cari]%') 
+                            or b.whatsapp like ('%$_GET[cari]%'))";
+        } else {
+            $status_raw = $_GET['status']; // "0,1"
+            $status_arr = explode(',', $status_raw);
+            $status_arr = array_map('intval', $status_arr); // amanin jadi integer
+            $in = implode(',', $status_arr); // "0,1"
+            $sql = "select
+                            count(a.id) as jml 
+                        from
+                            deposit a inner join ortu b on b.id = a.id_ortu left join siswa c on c.id = b.id_siswa 
+                        where a.status IN ($in) and (b.nik like ('%$_GET[cari]%') 
+                            or b.nama like ('%$_GET[cari]%') 
+                            or b.alamat like ('%$_GET[cari]%') 
+                            or b.whatsapp like ('%$_GET[cari]%'))";
+        }
     } else {
-        $sql = "select count(a.id) as jml from deposit a inner join ortu b on b.id = a.id_ortu where a.status IN ($_GET[status])";
+        if ($_GET['status'] == '2') {
+            $sql = "select count(a.id) as jml from deposit a inner join ortu b on b.id = a.id_ortu where a.status IN ($_GET[status])";
+        } else {
+            $status_raw = $_GET['status']; // "0,1"
+            $status_arr = explode(',', $status_raw);
+            $status_arr = array_map('intval', $status_arr); // amanin jadi integer
+            $in = implode(',', $status_arr); // "0,1"
+            $sql = "select count(a.id) as jml from deposit a inner join ortu b on b.id = a.id_ortu where a.status IN ($in)";
+        }
     }
 
     $result = mysqli_fetch_array(mysqli_query($koneksi_kantin, $sql));
