@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 header("Content-type:application/json");
 
 //koneksi ke database

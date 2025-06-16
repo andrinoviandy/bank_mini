@@ -2,7 +2,7 @@
 include("../config/koneksi.php");
 include("../include/API.php");
 session_start();
-error_reporting(0);
+// error_reporting(0);
 ?>
 <?php
 $start = $_GET['start'];
@@ -26,6 +26,7 @@ if (isset($_GET['cari'])) {
     }
 }
 $json = json_decode($file, true);
+var_dump($json); die();
 $jml2 = $file2;
 
 ?>
