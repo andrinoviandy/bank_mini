@@ -41,7 +41,7 @@ if (isset($_GET['id_hapus'])) {
           <div class="box-footer">
             <div class="box-body">
               <div class="input-group pull pull-left col-xs-1" style="padding-right:10px">
-                <a href="index.php?page=tambah_karyawan">
+                <a href="index.php?page=tambah_gaji_karyawan">
                   <button name="tambah_laporan" class="btn btn-success" type="submit"><span class="fa fa-plus"></span> Tambah</button></a>
               </div>
               <div class="pull pull-right">
