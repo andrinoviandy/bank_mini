@@ -237,7 +237,7 @@
 
     async function getDataTab1() {
         loading2('#table')
-        status_deposit_wali = '3'
+        status_deposit_wali = '0,1'
         await loadMore(load_flag, key, status_b)
         interval_deposit_wali = setInterval(() => {
             loadMore(load_flag, key, status_b)
@@ -252,8 +252,8 @@
     }
 
     $(document).ready(function() {
-        status_deposit_wali = '3';
-        if (status_deposit_wali == '3') {
+        status_deposit_wali = '0,1';
+        if (status_deposit_wali == '0,1') {
             interval_deposit_wali = setInterval(() => {
                 loadMore(load_flag, key, status_b)
             }, 5000);
