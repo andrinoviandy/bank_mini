@@ -26,7 +26,7 @@ if (isset($_GET['cari'])) {
     }
 }
 $json = json_decode($file, true);
-var_dump($json); die();
+// var_dump($json); die();
 $jml2 = $file2;
 
 ?>
